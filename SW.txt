@@ -1,0 +1,36 @@
+enable
+configure terminal
+hostname SW-**
+banner motd ACESSO APENAS PARA PESSOAS AUTORIZADA
+enable secret senhaenable
+ip domain-name rede.local
+crypto key generate rsa
+line console 0
+password senhadaconsole
+login
+exit
+line vty 0 15
+password senhadavty
+login
+username Administrador privilege 15 secret SenhaAdmin
+username estagiario privilege 1 secret SenhaEst
+exit
+interface vlan1
+ip address **
+no shutdown
+do wr
+ 
+interface f0/1
+ip address *********
+no shutdown
+exit 
+
+interface f0/2
+ip address *********
+no shutdown
+exit
+
+interface gigabitethernet 0/1
+ip address *********
+no shutdown
+do wr
